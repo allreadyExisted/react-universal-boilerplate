@@ -1,0 +1,13 @@
+@define-mixin circles $rem, $keyframe {
+  border-width: 0.5rem;
+  border-style: solid;
+  border-color: rgba(52, 152, 219, 0.9);
+  border-right-color: transparent;
+  border-left-color: transparent;
+  border-radius: 50%;
+  margin: 0 auto;
+  width: $rem;
+  height: $rem;
+  box-shadow: 0 0 1.5rem rgba(52, 152, 219, 0.9);
+  animation: $keyframe 1s infinite linear;
+}

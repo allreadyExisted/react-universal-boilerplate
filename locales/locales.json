@@ -1,0 +1,14 @@
+{
+  "ep.pages.home.title": {
+    "ru": "Главная",
+    "en": "Home"
+  },
+  "ep.pages.articles.title": {
+    "ru": "Статьи",
+    "en": "Articles"
+  },
+  "ep.pages.about.title": {
+    "ru": "О мне",
+    "en": "About me"
+  }
+}

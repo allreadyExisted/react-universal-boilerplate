@@ -1,0 +1,41 @@
+:root {
+  --wrap-bg: #f4f3f8;
+  --bg: #fff;
+  --shadow: 0 .4rem .8rem 0 rgba(0, 0, 0, .2), 0 .6rem 2rem 0 rgba(0, 0, 0, .19);
+}
+
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  font-size: 62.5%;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 4rem;
+  font-family: "Roboto";
+  font-size: 1.4rem;
+  line-height: 1.4;
+  background: var(--wrap-bg);
+}
+
+:global {
+  & #root {
+    height: 100%;
+    background: var(--bg);
+    border-radius: .5rem;
+    box-shadow: var(--shadow);
+  }
+}
