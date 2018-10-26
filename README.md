@@ -69,7 +69,7 @@ npm start
 Work with ssr mode (dev:ssr + dev:server)
 
 Gmail service
-```bash
+```ts
 const { login, pass, subject } = cfg.mail
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -81,7 +81,7 @@ const transporter = nodemailer.createTransport({
 ```
 
 Other mail services
-```bash
+```ts
 const { host, port, login, pass, subject } = cfg.mail
 const transporter = nodemailer.createTransport({
   host,
