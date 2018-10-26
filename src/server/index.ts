@@ -6,9 +6,9 @@ import cookieParser from 'cookie-parser'
 import express from 'express'
 import path from 'path'
 import { apiRouter } from 'server/api'
-// import { cache } from 'server/cache'
+import { cache } from 'server/cache'
 import { getLocales } from 'server/params'
-// import { handleRender } from 'server/renderer'
+import { handleRender } from 'server/renderer'
 import { getMovedPermanent } from 'server/routes'
 import {
   serveGzipped,
@@ -52,10 +52,7 @@ app.use((req, res, next) => {
   }
 })
 
-// app.get('*', cache, handleRender)
-app.get('*', (_, res) => {
-  res.sendFile(path.resolve(rootDir, 'index.html'))
-})
+app.get('*', cache, handleRender)
 
 app.listen(config.port, config.host, () => {
     // tslint:disable-next-line:no-console

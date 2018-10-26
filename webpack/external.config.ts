@@ -15,6 +15,8 @@ import { cssUse } from './css'
 import { ResourcesPlugin } from './resource-plugin'
 import { isDev, rootDir } from './tools'
 
+const isBsync = isDev && process.env.BSYNC === '1'
+
 const externalConfig: webpack.Configuration = {
   ...baseConfig,
 
@@ -90,19 +92,19 @@ const externalConfig: webpack.Configuration = {
       checkSyntacticErrors: true
     }),
 
+    new webpack.DefinePlugin({
+      BUILD_HASH: JSON.stringify(crypto.randomBytes(10).toString('hex'))
+    }),
+
+    new ResourcesPlugin({
+      from: 'locales/locales.json',
+      to: 'locales',
+      extension: 'json'
+    }),
+
     ...(isDev
       ? [
         new webpack.HotModuleReplacementPlugin(),
-        new BrowserSyncPlugin(
-          {
-            host: 'localhost',
-            port: 5002,
-            proxy: 'http://localhost:5001'
-          },
-          {
-            reload: true
-          }
-        ),
         new WebpackBar()
       ]
       : [
@@ -125,15 +127,20 @@ const externalConfig: webpack.Configuration = {
         new CompressionPlugin({})
       ]),
 
-    new webpack.DefinePlugin({
-      BUILD_HASH: JSON.stringify(crypto.randomBytes(10).toString('hex'))
-    }),
-
-    new ResourcesPlugin({
-      from: 'locales/locales.json',
-      to: 'locales',
-      extension: 'json'
-    })
+    ...(isBsync
+      ? [
+        new BrowserSyncPlugin(
+          {
+            host: 'localhost',
+            port: 5002,
+            proxy: 'http://localhost:5001'
+          },
+          {
+            reload: true
+          }
+        )
+      ]
+      : [])
   ],
 
   optimization: {

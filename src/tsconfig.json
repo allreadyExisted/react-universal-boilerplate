@@ -15,11 +15,11 @@
     "jsx": "react",
     "baseUrl": ".",
     "sourceMap": true,
-    "lib": [
-      "dom",
-      "esnext"
-    ],
-    "skipLibCheck": true
+    "lib": ["dom", "esnext"],
+    "skipLibCheck": true,
+    "paths": {
+      "external/*": ["external/*"]
+    }
   },
   "include": ["**/*"]
 }

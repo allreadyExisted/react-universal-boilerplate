@@ -6,7 +6,8 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "webpack --mode=production --progress --config ./webpack/all.config.ts",
-    "watch": "cross-env NODE_ENV=development BSYNC=1 webpack --mode=development -w --progress --config ./webpack/all.config.ts",
+    "watch": "cross-env NODE_ENV=development webpack --mode=development -w --progress --config ./webpack/all.config.ts",
+    "watch:bsync": "cross-env NODE_ENV=development BSYNC=1 webpack --mode=development -w --progress --config ./webpack/all.config.ts",
     "server": "nodemon dist/server.js"
   },
   "author": "alreadyExisted",

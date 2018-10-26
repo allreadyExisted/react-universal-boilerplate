@@ -5,7 +5,7 @@ import { LangRoute } from 'external/routes'
 import { DEFAULT_ROOT_URL, getLocaleUrl } from 'external/utils/location'
 import React from 'react'
 import { RouteComponentProps, withRouter } from 'react-router'
-import { findRoute } from 'routes'
+import { getCurrentRoute } from 'routes'
 import theme from '../../theme.css'
 
 interface StateProps {
@@ -42,10 +42,10 @@ class LangSwitcherComponent extends React.PureComponent<ComponentProps> {
     e.preventDefault()
     const { locale: { messages }, history: { location: { pathname }, push }, dispatch } = this.props
 
-    const activeRoute = findRoute(pathname) as LangRoute | undefined
+    const currentRoute = getCurrentRoute(pathname, lang) as LangRoute | null
 
-    const switchedUrl = activeRoute
-      ? getLocaleUrl(activeRoute, lang)
+    const switchedUrl = currentRoute
+      ? getLocaleUrl(currentRoute, lang)
       : DEFAULT_ROOT_URL
 
     push(switchedUrl)

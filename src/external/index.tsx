@@ -6,4 +6,4 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import '../polyfills/to-blob.js'
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<App />, document.getElementById('app'))

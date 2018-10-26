@@ -5,12 +5,12 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import serialize from 'serialize-javascript'
 
-interface Props extends LangData {
+export interface HtmlProps extends LangData {
   markup: string
   preloadedState: RootStore
 }
 
-export class Html extends React.Component<Props> {
+export class Html extends React.Component<HtmlProps> {
   render() {
     const head = Helmet.rewind()
     const { markup, preloadedState, lang } = this.props
