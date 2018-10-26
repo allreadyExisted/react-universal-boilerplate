@@ -16,9 +16,9 @@ class NotFoundComponent extends React.Component<ComponentProps> {
 
   render() {
     return <Page>
-    <SeoBlock id="not-found" />
-    <T id="ep.pages.not-found.title" wrapper="h1" />
-  </Page>
+      <SeoBlock id="not-found" />
+      <T id="ep.pages.not-found.title" wrapper="h1" />
+    </Page>
   }
 }
 

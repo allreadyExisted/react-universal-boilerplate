@@ -1,4 +1,3 @@
-import { isDev } from 'common/utils'
 import { RootStore } from 'external/redux'
 import { LangData } from 'external/redux/modules/locale'
 import React from 'react'
@@ -26,7 +25,7 @@ export class Html extends React.Component<HtmlProps> {
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-        {!isDev && <link rel="stylesheet" href={`/external.css?v=${BUILD_HASH}`} />}
+        <link rel="stylesheet" href={`/external.css?v=${BUILD_HASH}`} />
       </head>
       <body>
         <div id="app" dangerouslySetInnerHTML={{ __html: markup }} />

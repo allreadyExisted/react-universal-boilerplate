@@ -5,10 +5,14 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf dist",
+    "prebuild": "npm run clean",
     "build": "webpack --mode=production --progress --config ./webpack/all.config.ts",
-    "watch": "cross-env NODE_ENV=development webpack --mode=development -w --progress --config ./webpack/all.config.ts",
-    "watch:bsync": "cross-env NODE_ENV=development BSYNC=1 webpack --mode=development -w --progress --config ./webpack/all.config.ts",
-    "server": "nodemon dist/server.js"
+    "dev": "webpack-dev-server --mode=development --progress --config ./webpack/external.config.ts",
+    "dev:bsync": "cross-env BSYNC=1 webpack-dev-server --mode=development --progress --config ./webpack/external.config.ts",
+    "dev:ssr": "cross-env NODE_ENV=development webpack --mode=development -w --progress --config ./webpack/all.config.ts",
+    "dev:ssr-bsync": "cross-env NODE_ENV=development BSYNC=1 webpack --mode=development -w --progress --config ./webpack/all.config.ts",
+    "dev:server": "env-cmd ./configs/.env.dev nodemon dist/server.js",
+    "start": "env-cmd ./configs/.env.prod node dist/server.js"
   },
   "author": "alreadyExisted",
   "license": "MIT",
@@ -41,6 +45,7 @@
     "copy-webpack-plugin": "^4.5.2",
     "cross-env": "^5.2.0",
     "css-loader": "^1.0.0",
+    "env-cmd": "^8.0.2",
     "file-loader": "^2.0.0",
     "fork-ts-checker-webpack-plugin": "^0.4.9",
     "happypack": "^5.0.0",
@@ -70,6 +75,7 @@
     "url-loader": "^1.1.1",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.1",
+    "webpack-dev-server": "^3.1.10",
     "webpack-node-externals": "^1.7.2",
     "webpackbar": "^2.6.3"
   },

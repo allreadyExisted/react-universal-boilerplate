@@ -13,11 +13,11 @@ import * as WebpackBar from 'webpackbar'
 import { babelLoader, baseConfig } from './base.config'
 import { cssUse } from './css'
 import { ResourcesPlugin } from './resource-plugin'
-import { isDev, rootDir } from './tools'
+import { isDev, isHot, rootDir } from './tools'
 
 const isBsync = isDev && process.env.BSYNC === '1'
 
-const externalConfig: webpack.Configuration = {
+const externalConfig: webpack.Configuration & { devServer: any } = {
   ...baseConfig,
 
   entry: {
@@ -32,14 +32,15 @@ const externalConfig: webpack.Configuration = {
           {
             resourceQuery: /^\?raw$/,
             use: [
-              isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+              isHot ? 'style-loader' : MiniCssExtractPlugin.loader,
               'css-loader'
             ]
           },
           {
-            use: isDev
-              ? ['style-loader', ...cssUse]
-              : [MiniCssExtractPlugin.loader, ...cssUse]
+            use: [
+              isHot ? 'style-loader' : MiniCssExtractPlugin.loader,
+              ...cssUse
+            ]
           }
         ]
       },
@@ -102,15 +103,21 @@ const externalConfig: webpack.Configuration = {
       extension: 'json'
     }),
 
-    ...(isDev
+    ...(isHot
       ? [
-        new webpack.HotModuleReplacementPlugin(),
-        new WebpackBar()
+        new webpack.HotModuleReplacementPlugin()
       ]
       : [
         new MiniCssExtractPlugin({
           filename: '[name].css'
-        }),
+        })
+      ]),
+
+    ...(isDev
+      ? [
+        new WebpackBar()
+      ]
+      : [
         new HappyPack({
           id: 'tsx',
           loaders: [
@@ -179,7 +186,19 @@ const externalConfig: webpack.Configuration = {
 
   // CSS file mapping not allowed
   // To allow file mapping for CSS use 'source-map'
-  devtool: (isDev && 'cheap-module-eval-source-map') || undefined
+  devtool: (isDev && 'cheap-module-eval-source-map') || undefined,
+
+  devServer: {
+    hot: true,
+    inline: true,
+    contentBase: [
+      path.join(rootDir, './dist/static'),
+      path.join(rootDir, './views')
+    ],
+    port: 5001,
+    historyApiFallback: true,
+    publicPath: '/'
+  }
 }
 
 // tslint:disable-next-line:no-default-export
