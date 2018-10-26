@@ -1,5 +1,5 @@
+import { PreLoader } from 'common/@components/preloader'
 import { connect, DispatchProps } from 'common/redux/connect'
-import { PreLoader } from 'common/scenes/@components/preloader'
 import { fetchLocale, LocaleStore } from 'external/redux/modules/locale'
 import { getLang } from 'external/utils/locale'
 import React from 'react'

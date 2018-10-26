@@ -32,13 +32,13 @@ export class Html extends React.Component<HtmlProps> {
         <div id="app" dangerouslySetInnerHTML={{ __html: markup }} />
         <script
           dangerouslySetInnerHTML={{
-            __html: `window.env = ${serialize({}, { isJSON: true })};`
+            __html: `window.env = ${serialize({})};`
           }}
           charSet="UTF-8"
         />
         <script
           dangerouslySetInnerHTML={{
-            __html: `window.__INITIAL_DATA__=${serialize(preloadedState, { isJSON: true })};`
+            __html: `window.__PRELOAD_STATE__=${serialize(preloadedState)};`
           }}
           charSet="UTF-8"
         />

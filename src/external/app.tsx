@@ -8,8 +8,11 @@ import { ConnectedRouter } from 'react-router-redux'
 import { Bootstrap } from './bootstrap'
 import { configureStore } from './redux'
 
+const preloadState = window.__PRELOAD_STATE__
+delete window.__PRELOAD_STATE__
+
 export const history = createBrowserHistory()
-export const store = configureStore(history, window.__INITIAL_DATA__)
+export const store = configureStore(history, preloadState)
 
 class AppComponent extends React.PureComponent {
   public render() {

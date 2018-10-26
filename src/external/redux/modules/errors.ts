@@ -21,12 +21,14 @@ export const errorsHandler = handler<ErrorsStore>(
   { prefix: 'error' }
 )
 
+interface AddApiErrorsArgs {
+  errors: ApiErrorData[]
+  id: string
+  ajaxError: AjaxError | undefined
+}
+
 export const addApiErrors = errorsHandler
-  .action<{
-    errors: ApiErrorData[]
-    id: string
-    ajaxError: AjaxError | undefined
-  }>('ADD_ERROR')
+  .action<AddApiErrorsArgs>('ADD_ERROR')
   .sync((s, a) => ({
     ...s,
     api: {

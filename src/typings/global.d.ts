@@ -1,7 +1,9 @@
 declare namespace NodeJS {
   interface Global {
-    messagesRu: { [rid: string]: string }
-    messagesEn: { [rid: string]: string }
+    locales: {
+      ru: Record<string, string>
+      en: Record<string, string>
+    }
   }
   
   interface ProcessEnv {
@@ -17,8 +19,8 @@ declare namespace NodeJS {
 }
 
 interface Window {
-  __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: (args: any) => (...fn: Function[]) => any;
-  __INITIAL_DATA__: any;
+  __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: (args: any) => (...fn: Function[]) => any
+  __PRELOAD_STATE__: any
 }
 
-declare var BUILD_HASH: string;
+declare var BUILD_HASH: string

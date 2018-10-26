@@ -35,10 +35,8 @@ const loadRouteDepencies = ({ req, store, lang, stream }: LoadRouteArgs) => {
 
   store.dispatch(setMessages({
     lang,
-    messages: global[lang === 'ru' ? 'messagesRu' : 'messagesEn']
+    messages: global.locales[lang]
   }))
-
-  console.log('currentRoute', currentRoute)
 
   if (currentRoute) {
     const component = currentRoute.meta.component
@@ -53,10 +51,8 @@ const loadRouteDepencies = ({ req, store, lang, stream }: LoadRouteArgs) => {
     }
   }
 
-  if (subscriptions.length === 0) {
-    console.log('next')
+  if (subscriptions.length === 0)
     stream.next()
-  }
 
   subscriptions.forEach((s, i) => {
     loadingFinished.push(false)
@@ -73,7 +69,6 @@ const loadRouteDepencies = ({ req, store, lang, stream }: LoadRouteArgs) => {
 }
 
 export const handleRender = (req: Request, res: Response) => {
-  console.log('aaa')
   const history = createMemoryHistory({
     initialEntries: [req.url],
     initialIndex: 0
@@ -103,10 +98,9 @@ export const handleRender = (req: Request, res: Response) => {
     )
 
     const preloadedState = store.getState()
-    console.log('context', context)
 
     if (context.statusCode)
-    res.status(context.statusCode)
+      res.status(context.statusCode)
 
     res.send(renderHTML({ markup, preloadedState, lang }))
   })

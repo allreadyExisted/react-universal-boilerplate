@@ -12,15 +12,13 @@ export interface LangsList {
   en: string
 }
 
-export const LANGS_LIST: { [key in Langs]: Langs } = {
+export const LANGS_LIST: Record<Langs, Langs> = {
   ru: 'ru',
   en: 'en'
 }
 
-export interface MessagesByLangData { [rid: string]: string }
-
 type MessagesData = Partial<{
-  [key in Langs]: MessagesByLangData
+  [key in Langs]: Record<string, string>
 }>
 
 export interface LangData {
@@ -67,7 +65,7 @@ export const setLang = localeHandler.action<LangData>('SET_LANG')
   }))
 
 export const setMessages = localeHandler
-  .action<{ messages: MessagesByLangData } & LangData>('SET_LOCALE')
+  .action<{ messages: Record<string, string> } & LangData>('SET_LOCALE')
   .sync((s, { args: { messages, lang } }) => ({
     ...s,
     lang,

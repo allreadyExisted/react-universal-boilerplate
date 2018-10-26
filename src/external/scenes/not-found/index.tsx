@@ -1,3 +1,6 @@
+import { T } from 'common/@components/t'
+import { Page } from 'external/scenes/@components/page'
+import { SeoBlock } from 'external/scenes/@components/seo-block'
 import React from 'react'
 import { RouteComponentProps, withRouter } from 'react-router'
 
@@ -12,7 +15,10 @@ class NotFoundComponent extends React.Component<ComponentProps> {
   }
 
   render() {
-    return <h1>404</h1>
+    return <Page>
+    <SeoBlock id="not-found" />
+    <T id="ep.pages.not-found.title" wrapper="h1" />
+  </Page>
   }
 }
 

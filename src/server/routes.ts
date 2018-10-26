@@ -1,4 +1,4 @@
-const redirects: { [key: string]: string } = {
+const redirects: Record<string, string> = {
   ['/en']: '/en/home',
   ['/ru']: '/',
   ['/ru/home']: '/'

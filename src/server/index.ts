@@ -55,12 +55,9 @@ app.use((req, res, next) => {
 app.get('*', cache, handleRender)
 
 app.listen(config.port, config.host, () => {
-    // tslint:disable-next-line:no-console
-    console.log(`Listening at http://${config.host}:${config.port}\n`)
-  })
-  .on('error', err => {
-    console.log('on error', err)
-  })
+  // tslint:disable-next-line:no-console
+  console.log(`Listening at http://${config.host}:${config.port}\n`)
+})
 
 process.on('uncaughtException', err => {
   console.log('uncaughtException', err)

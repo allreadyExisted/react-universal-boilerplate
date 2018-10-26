@@ -1,5 +1,5 @@
+import { T } from 'common/@components/t'
 import { connect, DispatchProps } from 'common/redux/connect'
-import { T } from 'common/scenes/@components/t'
 import { externalRoutes, LangRoute } from 'external/routes'
 import { LL } from 'external/scenes/@components/locale-link'
 import React from 'react'

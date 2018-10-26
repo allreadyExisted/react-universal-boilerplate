@@ -1,3 +1,4 @@
+import { langs } from 'common/locale'
 import { config } from 'config'
 import { Langs } from 'external/redux/modules/locale'
 import fs from 'fs'
@@ -11,6 +12,10 @@ const getLocale = (lang: Langs) =>
   JSON.parse(fs.readFileSync(path.resolve(rootDir, 'dist/static/locales', `${lang}.json`), 'utf8'))
 
 export const getLocales = () => {
-  global.messagesRu = getLocale('ru')
-  global.messagesEn = getLocale('en')
+  langs.map(lang => {
+    global.locales = {
+      ...global.locales,
+      [lang]: getLocale(lang)
+    }
+  })
 }

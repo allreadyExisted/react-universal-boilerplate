@@ -14,14 +14,12 @@ export const cache = (req: Request, res: Response, next: NextFunction) => {
 
   const existRoute = getCurrentRoute(req.path, lang) as LangRoute | null
 
-  const customeSend = (cacheKey: string, status?: 404) => {
+  const customeSend = (cacheKey: string, status: 404 | 200 = 200) => {
     const sendResponse = res.send
     res.send = (body) => {
       mcache.put(cacheKey, body, CACHE_PAGES_EXPIRE)
       res.send = sendResponse
-      return status
-        ? res.status(status).send(body)
-        : res.send(body)
+      return res.status(status).send(body)
     }
     next()
   }

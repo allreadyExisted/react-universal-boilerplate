@@ -10,5 +10,9 @@
   "ep.pages.about.title": {
     "ru": "О мне",
     "en": "About me"
+  },
+  "ep.pages.not-found.title": {
+    "ru": "404 - Страница не найдена",
+    "en": "404 - Page not found"
   }
 }
