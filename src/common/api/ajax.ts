@@ -57,7 +57,7 @@ interface Request {
 
   /**
    * Request to servers root
-   * @example base path `http://btr/api/` will be replaced with `http://btr/`
+   * @example base path `http://some/api/` will be replaced with `http://some/`
    */
   root?: boolean
 
