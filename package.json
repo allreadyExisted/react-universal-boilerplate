@@ -14,7 +14,7 @@
     "dev:server": "env-cmd ./configs/.env.dev nodemon dist/server.js",
     "start": "env-cmd ./configs/.env.prod node dist/server.js"
   },
-  "author": "allreadyExisted",
+  "author": "alreadyExisted",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.1.0",
